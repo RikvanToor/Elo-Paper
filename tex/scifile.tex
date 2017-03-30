@@ -103,7 +103,7 @@
 % Place your abstract within the special {sciabstract} environment.
 
 \begin{sciabstract}
-  A common exclamation amongst gamers is that they cannot climb to their alleged true skill, because of the lack of competence amongst their own team mates. It is very easy to put the blame on someone other than yourself, but are these accusations really so far-fetched? To determine whether the expressed frustration is justified, the research conducted focused on finding a relation between team size and Elo convergence time. The results, for which Monte Carlo simulations were used, show a positive linear relation, which leads to the conclusion that team size indeed affects the time it takes a player to converge to their true Elo rating. However, the answer to the research question is no. No matter the time it takes to converge, a player will eventually converge to their true skill. This means that failing to climb the ladder for a long while can only be explained by insufficient proficiency.
+  A common exclamation amongst gamers is that they cannot climb to their alleged skill, due to the abilities, or rather inabilities of the team. Although it is easy to play the blame game, the bigger question is whether this is justified. Therefore this research studies the relation between team size and Elo convergence rate. Using Monte Carlo simulations, a positive linear relation was found, showing that team size affects the time it takes a player to converge to their true Elo rating. However, the results show that players eventually converge to their true skill, although this might take more games. Thus, failing to climb the ladder for a long time can only be explained by insufficient proficiency, and not the team.
 \end{sciabstract}
 
 
@@ -120,36 +120,52 @@
 \clearpage
 \section{Introduction}
 
-\textit{Elo}\cite{elo} is a rating system that can be used to determine a player's relative skill. The system was originally created with \textit{Chess} in mind, but gradually more and more implementations were found. Nowadays, a great number of video games make use of this system in some way, whether it is an unaltered version or a deeply adjusted one. Online, where players can compete with each other in so called PvP(Player vs. Player) games a lot of teams are formed. With team based games, people tend to say :  ``I do not belong at this Elo.'' \cite{exampleclaim} But does a team really have that much influence on an individual skill level or is it just a misconception? More importantly, does it matter how many teammates a player has, to converge to their true skill level within a certain time?\\
+In a competitive gaming environment, your rank represents how good you are relative to others. With team based games, people tend to say :  ``I do not belong at this skill rating.'' \cite{exampleclaim}. To find out whether these accusation are valid, this study answers the question: Does a player's rating always converge to their own skill level? In order to answer this question, this study focused on the influence of team size on the convergence of a player's rating.
 
-Nowadays, there are many existing alternatives to Elo. Popular choices are Mark Glickman's \textit{Glicko} and \textit{Glicko2}\cite{glicko}, as well as Microsoft's \textit{TrueSkill}\texttrademark\cite{trueskill}, which was based on some of the core concepts of \textit{Glicko}. Both of these systems do not consider the effect of team sizes on a single player’s convergence, but are mainly focused on matchmaking and outcome. In this paper, the traditional Elo system is used to simulate the progress of a player's rating.\\
+This study used the Elo rating system. The Elo rating system \textit{Elo}\cite{elo} is a rating system that can be used to determine a player's relative skill. The system was originally created with \textit{Chess} in mind, which is a one-versus-one environment. However, gradually more and more implementations were found. Nowadays, a great number of video games make use of this system in some way, whether it is an unaltered version or a deeply adjusted one. 
+
+There already exist rating systems designed to support team based ratings. Popular choices are Mark Glickman's \textit{Glicko} and \textit{Glicko2}\cite{glicko}, as well as Microsoft's \textit{TrueSkill}\texttrademark\cite{trueskill}, which was based on some of the core concepts of \textit{Glicko}. These are algorithms were tailored to support teams, whilst the traditional Elo system was not. However, instructions forced the use of the traditional Elo system. Therefore, this research extends the original Elo system and applies it to a variety of team sizes. \\
+
+\section{Method}
+To simulate the workings of this system, a program based on Monte Carlo simulations\cite{montecarlo} was written. The program used is described using a step-by-step plan with elaboration where necessary.
+
+\subsection{Elo}
 
 The Elo system describes a function to determine the chance that a player will beat another player.\\
-\textbf{Definition 1.} $E_A$ represents the chance that player $A$ will win from player $B$ and $R_B$ and $R_A$ are the Elo ratings of player $A$ and $B$, respectively.\\
+
+\textbf{Definition 1.} Given players $A$ and $B$ with rating $R_A$ and $R_B$ respectively, the chance $E_A$ that player $A$ beats player $B$ equals\\
 \[ E_A = \frac{1}{1 + 10^{\frac{R_{B}-R_{A}}{400}}} \]\\
 
 Additionally, the Elo system describes a function to adjust a player’s Elo rating after a game.\\
-\textbf{Definition 2.} The updated Elo rating $R'$ is determined based on the previous Elo rating $R$, a variable $W$, which equals $1$ if the player has won the game and $0$ if they lost, the chance the player would have won the game $P$, calculated using the evaluation function and a variable $K$.
-\[R' = R + (W - P) \cdot K\]
+
+\textbf{Definition 2.} Given chance $E_A$ that player $A$ beats player $B$, player $A$'s new Elo rating equals
+\[R' = \begin{cases}
+R + (1 - E_A ) \cdot K & if \; won \\ R - E_A \cdot K & if \; lost
+\end{cases}\]
 Where
 \[ K = \begin{cases}
 16 & R < 2000 \\ 12 & 2000 \leq R \leq 2200 \\ 10 & R > 2200 
 \end{cases}\]
 
-\section{Methods}
-To simulate the workings of this system, a program based on Monte Carlo simulations\cite{montecarlo} was written. The program used is best described using a step-by-step plan with elaboration where necessary.
+https://nl.wikipedia.org/wiki/Elo-rating
+
+
 \subsection{Assumptions}
 A player’s Elo Rating has converged if their Elo does not change significantly over a span of at least 5\% of the number of games played so far. This is checked by taking the standard deviation of the player's Elo rating over the most recent games with regard to the player’s true skill. If this deviation is lower than a certain constant $\alpha$, the Elo rating has converged. To get to the value of $\alpha$, the following calculation was used:
 \[R' = R + (W - P) \cdot K\]
 \[\Delta R = (W - P) \cdot K\]
 Since $(W - P)$ ranges from $-1$ to $1$, the maximum value of $\Delta R$ equals the maximum value of $K$: $16$. The minimum value of $\Delta R$ equals $-16$. Since the player will lose approximately the same number of games as they win, since they play against players of the same skill level, their Elo will fluctuate their true skill $\pm \Delta R$. To be on the safe side, the value of $\alpha$ was set to $20$.\\
 The Elo rating itself is clamped between 1200 and 2800, which means that a rating cannot go lower than 1200 nor higher than 2800. Every new player starts at 1500 Elo, whilst the team size can be any positive integer.
+Because of the League of Legends based matchmaking, if a player's true skill exceeds the opponent's true skill by at least 100 points, the chance becomes 1 that this player wins.\\
 
 \subsection{Matchmaking}
+
+The proposed program uses the same matchmaking technique as the popular online game \textit{League of Legends} does.
+
 \begin{quote}
-``[League of Legends] tries to match teams as fairly as possible: it computes the average of the player ranking values for each team, and then uses these averages to match teams similarly to one-versus-one fights.''\cite{moba}
+``... it computes the average of the player ranking values for each team, and then uses these averages to match teams similarly to one-versus-one fights.''\cite{moba}
 \end{quote}
-The proposed program uses the same matchmaking technique as the popular online game \textit{League of Legends} does. Because of the MOBA/League of Legends based matchmaking, if a player's true skill exceeds the opponent's true skill by at least 100 points, the chance becomes 1 that this player wins.
+
 
 \subsection{Evaluation function}
 The members of both teams are subdivided into couples. This means that each player on a team is matched with one opponent. Each individual win earns a win chance of $\frac{1}{N}$ where $N$ represents the team size. 
@@ -163,7 +179,7 @@ If A\textsubscript{1} beats B\textsubscript{1}, A\textsubscript{2} beats B\texts
 This accumulated value will be referred to as \textit{factor 1} in future reference. This is a factor that is prominent within Multiplayer Online Battle Arena games such as League of Legends\cite{moba}.The ability to outsmart or outplay an opponent in a 1 versus 1 setting can determine the outcome of an entire game. However, an equally important factor is the ability to play together. This is the core of most games involving teamwork. For that reason, the average of the true skill is taken for both teams. This average will be referred to as \textit{factor 2} in future reference.
 Lastly, the average of \textit{factor 1} and \textit{factor 2} is inserted into the original Elo win chance function mentioned in the Introduction section.
 
-\section{The program}
+\subsection{The program}
 The program uses 4 main variables. These are the number of simulations($S$), a team size($N$), the evaluation function($e$)  and the maximum difference between players called the competence range($c$). There are two phases in the program: the \textit{initialisation phase} and the \textit{game phase}. In the \textit{initialisation phase}, a new player($p$) is created which is monitored by the program, with a random true skill level $t$  and a starting Elo of $1500$. Starting the game phase, $N - 1$ random allies($a$) are added to $p$’s team. N Random opponents($o$) are added to the other team. For all generated opponents and allies, the Elo rating is calculated by
 \[Elo_p \pm RandomMax(0,c)\]
 When each $a$ and $o$ have been determined, the evaluation function(section 3.3) calculates which team wins and what the new rating of $p$ will become. If $p$'s Elo stays within $Elo_p \pm 20$ for 5\% of the games played so far, the player's Elo rating has converged.
@@ -236,8 +252,12 @@ For each team size, a sample size of $10000$ simulations was used. In order to i
 \end{tikzpicture}
 
 \section{Discussion}
-The figures show that there is a linear relation between the amount of games that are needed to converge a player's Elo rating towards their real skill level. The confidence intervals are small, while the average number of games can become high numbers for bigger teams. Compared to TrueSkill\texttrademark, which has been Researched by Microsoft, the proposed simulation needs more games to converge a player's Elo to their true skill level. However, while TrueSkill\texttrademark is based on some of the fundamentals of Elo, it uses a Bayesian rating system.\cite{trueskill} For a game with 2 teams of 4 players each, TrueSkill\texttrademark needs approximately 46 games\cite{trueskillconvergence}, whereas the traditional Elo system needs roughly 350 games, which is around 8 times as many games as TrueSkill\texttrademark needs. If a team consists of 8 players, TrueSkill\texttrademark needs 96 games, while the simulation indicates that 595 games are needed to converge.\\
-While TrueSkill\texttrademark does not particularly take the team sizes into account (just flexible teams), the same positive linear relation can be found here. It can be noted that the program used in this paper will not be of any use in the real (gaming) world.
+The figures show that there is a linear relation between the amount of games that are needed to converge a player's Elo rating towards their real skill level. The confidence intervals are small, while the average number of games can become high numbers for bigger teams. 
+
+Compared to TrueSkill\texttrademark, the proposed program needs more games to converge a player's Elo to their true skill level. However, while TrueSkill\texttrademark is based on some of the fundamentals of Elo, it uses a Bayesian rating system.\cite{trueskill} For a game with 2 teams of 4 players each, TrueSkill\texttrademark needs approximately 46 games\cite{trueskillconvergence}, whereas the proposed system Elo system needs roughly 350 games, which is around 8 times as much. If a team consists of 8 players, TrueSkill\texttrademark needs 96 games, while the proposed program indicates that 595 games are needed to converge.\\
+While TrueSkill\texttrademark does not particularly take the team sizes into account, the same positive linear relation can be found here. It can be noted that the program used in this paper will not be of any use in the real (gaming) world, because it does not show any advantages over TrueSkill\texttrademark.
+
+
 \begin{quote}
 	``However, there is another factor taken into consideration which is MVP (Most Valuable Player). MVP is given to a player which has done the most work for their team. Please note that a player with 5 kill can still lose the MVP to a person who defuses or successfully detonated the bomb. The reason for this is because, CSGO is a team-based game, a player can kill the whole enemy team but still lose the round because he may not have the defuser to defuse the bomb in time.''\cite{csgo}
 \end{quote}
