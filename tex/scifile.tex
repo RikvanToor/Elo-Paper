@@ -16,6 +16,7 @@
 \usepackage{times}
 \usepackage{pgfplots}
 \usepackage{amsmath}
+\usepackage{listings}
 
 % The preamble here sets up a lot of new/revised commands and
 % environments.  It's annoying, but please do *not* try to strip these
@@ -133,8 +134,8 @@ To simulate the workings of this system, a program based on Monte Carlo simulati
 
 The Elo system describes a function to determine the chance that a player will beat another player.\\
 
-\textbf{Definition 1.} Given players $A$ and $B$ with rating $R_A$ and $R_B$ respectively, the chance $E_A$ that player $A$ beats player $B$ equals\\
-\[ E_A = \frac{1}{1 + 10^{\frac{R_{B}-R_{A}}{400}}} \]\\
+\textbf{Definition 1.} Given players $A$ and $B$ with rating $R_A$ and $R_B$ respectively, the chance $E_A$ that player $A$ beats player $B$ equals
+\[ E_A = \frac{1}{1 + 10^{\frac{R_{B}-R_{A}}{400}}} \]
 
 Additionally, the Elo system describes a function to adjust a player’s Elo rating after a game.\\
 
@@ -183,6 +184,8 @@ Lastly, the average of \textit{factor 1} and \textit{factor 2} is inserted into 
 The program uses 4 main variables. These are the number of simulations($S$), a team size($N$), the evaluation function($e$)  and the maximum difference between players called the competence range($c$). There are two phases in the program: the \textit{initialisation phase} and the \textit{game phase}. In the \textit{initialisation phase}, a new player($p$) is created which is monitored by the program, with a random true skill level $t$  and a starting Elo of $1500$. Starting the game phase, $N - 1$ random allies($a$) are added to $p$’s team. N Random opponents($o$) are added to the other team. For all generated opponents and allies, the Elo rating is calculated by
 \[Elo_p \pm RandomMax(0,c)\]
 When each $a$ and $o$ have been determined, the evaluation function(section 3.3) calculates which team wins and what the new rating of $p$ will become. If $p$'s Elo stays within $Elo_p \pm 20$ for 5\% of the games played so far, the player's Elo rating has converged.
+
+
 
 \section{Results}
 Using the program described in the Methods section, the following data was generated.
@@ -244,6 +247,7 @@ For each team size, a sample size of $10000$ simulations was used. In order to i
 
 \begin{tikzpicture}
 \begin{axis}[xmin=0,xmax=12.8,width = 420,xlabel=Team size,ylabel=Average number of games needed to converge to actual skill level,title=Games needed for team of given size]
+\addplot[gray, samples = 100, domain = 0:12]{69*x+75} node[right,pos=0.08] {Trend $f(x) = 69\cdot x + 75$};
 \addplot[label=hoi,blue, error bars/.cd, y dir=both, y explicit, error bar style={line width=2pt}, error mark options={rotate=90,blue,mark size=6pt, line width=1pt}] plot coordinates {(1,193) +- (0,0) (2,229) +- (0,1) (3,280) +- (0,2) (4,341) +- (0,4) (5,404) +- (0,5) (6,474) +- (0,6) (7,537) +- (0,7) (8,595) +- (0,8) (9,659) +- (0,9) (10,712) +- (0,10)} node[right,pos=0.82] {Comp. lvl 50};
 \addplot[red, error bars/.cd, y dir=both, y explicit, error bar style={line width=2pt}, error mark options={rotate=90,red,mark size=6pt, line width=1pt}] plot coordinates {(1,193) +- (0,0) (2,231) +- (0,1) (3,287) +- (0,3) (4,348) +- (0,4) (5,420) +- (0,5) (6,488) +- (0,6) (7,558) +- (0,7) (8,626) +- (0,9) (9,694) +- (0,10) (10,766) +- (0,11)} node[right,pos=1.007] {Comp. lvl 100};
 \addplot[green, error bars/.cd, y dir=both, y explicit, error bar style={line width=2pt}, error mark options={rotate=90,green,mark size=6pt, line width=1pt}] plot coordinates {(1,196) +- (0,0) (2,242) +- (0,2) (3,308) +- (0,3) (4,381) +- (0,4) (5,452) +- (0,6) (6,530) +- (0,7) (7,607) +- (0,8) (8,673) +- (0,10) (9,759) +- (0,9) (10,824) +- (0,12)} node[left,pos=0.85] {Comp. lvl 200};
@@ -335,7 +339,39 @@ For this to be true, an example is required where it takes excessively long for 
 % off from the rest of the text with a \clearpage as shown  below, and
 % submit figures as separate files according to the Art Department's
 % instructions.
+\clearpage
 
+\section*{Appendix 1. Pseudo-code}
+\begin{lstlisting}[frame=single] 
+Happens(P)
+  return random(0, 1) < P;
+
+A Beats B
+  winchanceA = f(A.eloRating, B.eloRating);
+  return Happens(winchanceA);
+
+for each team size
+  Create a Player(elorating = 1500, 
+  trueSkill = random(1200, 2800));
+  for 1 to S do
+    while not Converged do
+      AllyList[0] = Player;
+      Add N - 1 random Allies to AllyList;
+      Add N random Opponents to OpponentList;
+
+      1v1Chance = 0;
+      for int i from  0 to N
+        if AllyList[i] Beats OpponentList[i]
+          1v1Chance += 1 / N
+      teamChance = f(average trueSkill of AllyList, 
+                     average trueSkill of OpponentList)
+      finalChance = (1v1Chance + teamChance) / 2
+      wins = Happens(finalChance)
+      Player.eloRating = g(wins)
+    endwhile
+  endfor
+endfor
+\end{lstlisting}
 
 \end{document}
 
