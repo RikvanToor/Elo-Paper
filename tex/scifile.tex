@@ -147,9 +147,7 @@ Where
 \[ K = \begin{cases}
 16 & R < 2000 \\ 12 & 2000 \leq R \leq 2200 \\ 10 & R > 2200 
 \end{cases}\]
-
-https://nl.wikipedia.org/wiki/Elo-rating
-
+\cite{wiki}
 
 \subsection{Assumptions}
 A player’s Elo Rating has converged if their Elo does not change significantly over a span of at least 5\% of the number of games played so far. This is checked by taking the standard deviation of the player's Elo rating over the most recent games with regard to the player’s true skill. If this deviation is lower than a certain constant $\alpha$, the Elo rating has converged. To get to the value of $\alpha$, the following calculation was used:
@@ -345,10 +343,7 @@ For this to be true, an example is required where it takes excessively long for 
 \begin{lstlisting}[frame=single] 
 Happens(P)
   return random(0, 1) < P;
-
-A Beats B
-  winchanceA = f(A.eloRating, B.eloRating);
-  return Happens(winchanceA);
+  
 
 for each team size
   Create a Player(elorating = 1500, 
