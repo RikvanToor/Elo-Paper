@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{elo}
+A.E. Elo, \textit{The Rating of Chessplayers, Past and Present} (Arco Pub.,
+  1978).
+
+\bibitem{exampleclaim}
+Example of claim:
+  http://forums.na.leagueoflegends.com/board/showthread.php?t=1992064.
+
+\bibitem{glicko}
+Dr. M.E. Glickman, \textit{The Glicko system} (2016).
+
+\bibitem{trueskill}
+R. Herbrich et al., \textit{TrueSkill\texttrademark: A Bayesian Skill Rating
+  System} (2006).
+
+\bibitem{montecarlo}
+S.J. Mason et al., \textit{Introduction to Monte Carlo simulation} (2008).
+
+\bibitem{moba}
+MOBA League matchmaking.
+
+\bibitem{trueskillconvergence}
+TrueSkill\texttrademark Convergence Rates
+  https://www.microsoft.com/en-us/research/project/trueskill-ranking-system/.
+
+\bibitem{csgo}
+CounterStrike MVP
+  https://steamcommunity.com/sharedfiles/filedetails/?l=dutch\&id=312582297.
+
+\end{thebibliography}

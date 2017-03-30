@@ -1,0 +1,12 @@
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\bin\Debug\MonteCarlo.exe.config
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\bin\Debug\MonteCarlo.exe
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\bin\Debug\MonteCarlo.pdb
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\obj\Debug\MonteCarlo.csprojResolveAssemblyReference.cache
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\obj\Debug\MonteCarlo.exe
+C:\Users\Michiel\Documents\Uni\Onderzoeksmethoden\MonteCarlo\MonteCarlo\obj\Debug\MonteCarlo.pdb
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\bin\Debug\MonteCarlo.exe.config
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\bin\Debug\MonteCarlo.exe
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\bin\Debug\MonteCarlo.pdb
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\obj\Debug\MonteCarlo.csprojResolveAssemblyReference.cache
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\obj\Debug\MonteCarlo.exe
+C:\Users\Rik\Documents\Visual Studio 2017\Projects\onderzoeksmethoden\MonteCarlo\obj\Debug\MonteCarlo.pdb
