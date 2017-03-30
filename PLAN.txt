@@ -1,0 +1,24 @@
+Method
+ - Wat is ELO van 1?
+ - Hoe doe je dat in teams?
+ - Winning a team game
+ - Setup
+   - True rating?
+   - Hoe veel runs?
+ - Analyse : hoe?
+
+Als vervolg kunnen we ook één vaste speler met voorbedachte waarden testen. Orakel.
+
+Lineair regressie model
+
+Discussion
+ - Lineair verband teamsize & nr of games			| 2
+ - True Elo wordt gehaald, anders termineert programma niet	| 1 Findings
+ - Limitations
+   - Random kiezen van true skill
+   - Kwaliteit Elo
+     - Eigen keuze? Vergelijk andere
+   - Invloed keuze teams
+   - 10000 sims
+   - 5% lang genoeg? Lokaal optimum? Law of large numbers
+   - 50/100/200?
