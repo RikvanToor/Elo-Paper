@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.3.27)  30 MAR 2017 11:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2017.3.27)  30 MAR 2017 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -636,27 +636,44 @@ Missing character: There is no ™ in font ptmr7t!
 Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no ™ in font ptmr7t!
- [5] [6] [7] [8] (./scifile.bbl
+ [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+
+ []
+
+[7]
+PGFPlots: reading {player.dat}
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
+
+ []
+
+[8] [9] (./scifile.bbl
 Overfull \hbox (1.45483pt too wide) in paragraph at lines 8--10
 []\OT1/ptm/m/n/12 Example of claim: http://forums.na.leagueoflegends.com/board/
 showthread.php?t=1992064. 
  []
 
-[9]
+[10]
 Overfull \hbox (28.83638pt too wide) in paragraph at lines 29--31
 []\OT1/ptm/m/n/12 CounterStrike MVP https://steamcommunity.com/sharedfiles/file
 details/?l=dutch&id=312582297. 
  []
 
-) [10] (./scifile.aux) ) 
+) [11] (./scifile.aux) ) 
 Here is how much of TeX's memory you used:
- 22151 strings out of 493013
- 577387 string characters out of 6136993
- 779283 words of memory out of 5000000
- 25321 multiletter control sequences out of 15000+600000
+ 22188 strings out of 493013
+ 578197 string characters out of 6136993
+ 788408 words of memory out of 5000000
+ 25356 multiletter control sequences out of 15000+600000
  23507 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,9n,100p,1016b,2386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,100p,1016b,2380s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc
 }<c:/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texl
 ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2016/
@@ -670,10 +687,10 @@ ve/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2016/te
 xmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb><c:/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on scifile.pdf (10 pages, 149947 bytes).
+Output written on scifile.pdf (11 pages, 155051 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
